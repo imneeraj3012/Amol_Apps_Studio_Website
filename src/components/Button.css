@@ -1,0 +1,70 @@
+/* M2 — button primitive: ~10px radius, semibold, subtle lift on hover. */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  line-height: 1;
+  border-radius: var(--radius-md);
+  border: 1.5px solid transparent;
+  padding: var(--space-3) var(--space-6);
+  min-height: 2.75rem; /* touch-friendly */
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.btn--sm {
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-4);
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--primary:hover {
+  background: var(--color-primary-hover);
+  color: var(--color-primary-ink);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn--primary:active {
+  background: var(--color-primary-active);
+  transform: translateY(0);
+}
+
+.btn--outline {
+  background: var(--color-surface);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn--outline:hover {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn--onNavy {
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.btn--onNavy:hover {
+  color: var(--color-primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}

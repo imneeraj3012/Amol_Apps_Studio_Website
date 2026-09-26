@@ -1,0 +1,32 @@
+/* M2 — temporary shell-preview placeholder styles (not page design). */
+
+.shell-preview {
+  padding-block: var(--space-16);
+}
+
+.shell-preview__card {
+  max-width: 44rem;
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.shell-preview__title {
+  margin: 0;
+}
+
+.shell-preview__note {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+.shell-preview__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}

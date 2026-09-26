@@ -1,0 +1,47 @@
+/* M2 — brand lockup. */
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  line-height: 1;
+}
+
+.logo__mark {
+  width: 2rem;
+  height: 2rem;
+  flex: none;
+}
+
+.logo__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.logo__name {
+  font-size: var(--text-base);
+  font-weight: var(--weight-extrabold);
+  letter-spacing: 0.01em;
+  color: var(--color-ink-strong);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.logo__tagline {
+  font-size: 0.6875rem;
+  font-weight: var(--weight-medium);
+  color: var(--color-ink-faint);
+  white-space: nowrap;
+}
+
+/* Guard against overflow on very narrow viewports. */
+@media (max-width: 400px) {
+  .logo__tagline {
+    display: none;
+  }
+
+  .logo__name {
+    font-size: var(--text-sm);
+  }
+}
