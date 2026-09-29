@@ -9,7 +9,12 @@ import './Header.css'
  * an accessible disclosure menu (button + React state + CSS only).
  * Nav targets are placeholder hashes until real pages exist (M3+). */
 
-export function Header() {
+interface HeaderProps {
+  /** Label of the currently active nav item (M4: Home vs Services pages). */
+  active?: string
+}
+
+export function Header({ active = 'Home' }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const menuId = useId()
 
@@ -28,7 +33,7 @@ export function Header() {
       <div className="container site-header__inner">
         <a
           className="site-header__brand"
-          href="#home"
+          href="#/"
           aria-label={`${siteMeta.name} — home`}
         >
           <Logo />
@@ -36,16 +41,16 @@ export function Header() {
 
         <nav className="site-header__nav" aria-label="Primary">
           <ul>
-            {primaryNav.map((item, index) => (
+            {primaryNav.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
                   className={
-                    index === 0
+                    item.label === active
                       ? 'site-header__link site-header__link--active'
                       : 'site-header__link'
                   }
-                  aria-current={index === 0 ? 'page' : undefined}
+                  aria-current={item.label === active ? 'page' : undefined}
                 >
                   {item.label}
                 </a>
@@ -96,16 +101,16 @@ export function Header() {
       >
         <nav aria-label="Mobile">
           <ul>
-            {primaryNav.map((item, index) => (
+            {primaryNav.map((item) => (
               <li key={item.label}>
                 <a
                   href={item.href}
                   className={
-                    index === 0
+                    item.label === active
                       ? 'mobile-menu__link mobile-menu__link--active'
                       : 'mobile-menu__link'
                   }
-                  aria-current={index === 0 ? 'page' : undefined}
+                  aria-current={item.label === active ? 'page' : undefined}
                   onClick={() => setOpen(false)}
                 >
                   {item.label}

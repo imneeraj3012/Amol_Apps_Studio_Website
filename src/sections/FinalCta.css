@@ -1,0 +1,99 @@
+/* M3 — final CTA: strong blue rounded banner, white typography. */
+
+.cta-banner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-8) var(--space-6);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(28rem 14rem at 85% 20%, rgba(255, 255, 255, 0.22), transparent 60%),
+    radial-gradient(24rem 16rem at 8% 90%, rgba(7, 25, 66, 0.55), transparent 65%),
+    linear-gradient(100deg, #0c2a5e 0%, #1f6bf5 62%, #2f7bff 100%);
+  color: var(--color-ink-inverse);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.cta-banner__plane {
+  width: 3.5rem;
+  height: 3.5rem;
+  flex: none;
+}
+
+.cta-banner__eyebrow {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-inverse-muted);
+}
+
+.cta-banner__title {
+  margin: 0 0 var(--space-2);
+  color: #fff;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+}
+
+.cta-banner__desc {
+  margin: 0;
+  color: var(--color-ink-inverse-muted);
+  font-size: var(--text-sm);
+  max-width: 38rem;
+}
+
+.cta-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.cta-banner__ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.cta-banner__ghost svg {
+  width: 1em;
+  height: 1em;
+}
+
+.cta-banner__ghost:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: #fff;
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .cta-banner {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-8);
+    padding: var(--space-10) var(--space-10);
+  }
+
+  .cta-banner__copy {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-banner__actions {
+    flex: none;
+  }
+}

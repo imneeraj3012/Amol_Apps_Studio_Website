@@ -1,0 +1,183 @@
+/* M4 — detail blocks: pastel cards, two-per-row on desktop, text + visual
+ * side-by-side inside each card. */
+
+.detail-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.detail-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+  min-width: 0;
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(
+    (100vw * 300 / 1600) + var(--header-height) + var(--space-4)
+  );
+}
+
+.detail-card.tone-blue { background: #eef4fe; }
+.detail-card.tone-purple { background: #f3eefd; }
+.detail-card.tone-green { background: #eaf7ef; }
+.detail-card.tone-orange { background: #fdf3e6; }
+.detail-card.tone-pink { background: #fcecf4; }
+.detail-card.tone-teal { background: #e6f5f3; }
+
+.detail-card__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detail-card__title {
+  margin: 0;
+  font-size: var(--text-xl);
+  color: var(--color-ink-strong);
+}
+
+.detail-card__desc {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+}
+
+.detail-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.detail-card__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-ink-muted);
+}
+
+.detail-card__list svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  margin-top: 0.15rem;
+  color: var(--color-primary);
+}
+
+/* ---- Visuals ---- */
+
+.detail-visual {
+  min-width: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+.detail-visual--photo {
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(135deg, #eef3fd, #e0e9fb);
+  box-shadow: var(--shadow-sm);
+}
+
+.detail-visual__img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Conceptual CSS illustrations (AI / automation): center badge with
+ * surrounding icon chips on a soft tinted field. */
+.detail-visual--ai,
+.detail-visual--automation {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+  place-items: center;
+  padding: var(--space-6);
+}
+
+.detail-visual--ai {
+  background:
+    radial-gradient(10rem 10rem at 50% 50%, rgba(224, 82, 155, 0.22), transparent 70%),
+    #fbeef5;
+}
+
+.detail-visual--automation {
+  background:
+    radial-gradient(10rem 10rem at 50% 50%, rgba(14, 174, 156, 0.2), transparent 70%),
+    #e9f6f4;
+}
+
+.detail-visual__center {
+  grid-row: 1 / -1;
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.75rem;
+  height: 3.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: var(--weight-extrabold);
+  font-size: var(--text-xl);
+  box-shadow: var(--shadow-md);
+}
+
+.detail-visual__center--gear {
+  background: var(--color-accent-teal);
+}
+
+.detail-visual__center--gear svg {
+  width: 2rem;
+  height: 2rem;
+}
+
+.detail-visual__chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+  color: var(--color-accent-purple);
+}
+
+.detail-visual--automation .detail-visual__chip {
+  color: var(--color-accent-teal);
+}
+
+.detail-visual__chip svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+@media (min-width: 640px) {
+  .detail-card {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

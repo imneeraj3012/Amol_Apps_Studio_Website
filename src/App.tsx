@@ -1,35 +1,67 @@
-import { Button } from './components/Button'
-import { Card } from './components/Card'
+import { useCallback, useEffect, useState } from 'react'
 import { SiteShell } from './components/SiteShell'
-import { siteMeta, startProjectCta } from './data/site'
+import { Home } from './pages/Home'
+import { ServicesPage } from './pages/ServicesPage'
+import {
+  anchorExists,
+  parseHash,
+  type RouteState,
+} from './utils/route'
 import './App.css'
 
-/* M2 — shell preview placeholder. NOT a page: no Home/Services/Portfolio/
- * About/Contact content. Real pages arrive from M3 onwards and render inside
- * SiteShell's <main> without structural changes. */
+/* M3 — homepage on top of the M2 shell. SiteShell still owns Header /
+ * <main> / Footer; Home renders the section order from Website_sample.png.
+ * M4 — minimal hash router: "#/" renders Home, "#/services" renders the
+ * Services page. Legacy plain anchors ("#contact") keep working by
+ * resolving to home + that section. */
+
+function scrollToAnchor(anchor: string) {
+  const target = document.getElementById(anchor)
+  if (target) target.scrollIntoView({ block: 'start' })
+}
 
 function App() {
+  const [routeState, setRouteState] = useState<RouteState>(() =>
+    typeof window === 'undefined'
+      ? { route: 'home', anchor: null }
+      : parseHash(window.location.hash),
+  )
+
+  const syncFromHash = useCallback(() => {
+    const next = parseHash(window.location.hash)
+    // In-page anchors already in the DOM use native browser scrolling.
+    if (!window.location.hash.startsWith('#/') && anchorExists(next.anchor)) {
+      return
+    }
+    setRouteState(next)
+  }, [])
+
+  useEffect(() => {
+    window.addEventListener('hashchange', syncFromHash)
+    return () => window.removeEventListener('hashchange', syncFromHash)
+  }, [syncFromHash])
+
+  const { route, anchor } = routeState
+
+  // Scroll after the routed page has rendered.
+  useEffect(() => {
+    if (anchor) {
+      const frame = requestAnimationFrame(() => scrollToAnchor(anchor))
+      return () => cancelAnimationFrame(frame)
+    }
+    window.scrollTo({ top: 0 })
+  }, [route, anchor])
+
+  useEffect(() => {
+    document.title =
+      route === 'services'
+        ? 'Services — Amol Apps Studio'
+        : 'Amol Apps Studio — Turning Business Ideas Into Real Apps'
+  }, [route])
+
   return (
-    <SiteShell>
-      <div className="container shell-preview">
-        <Card className="shell-preview__card">
-          <p className="eyebrow">M2 — Design System + Website Shell</p>
-          <h1 className="shell-preview__title">{siteMeta.name}</h1>
-          <p>{siteMeta.tagline}</p>
-          <p className="shell-preview__note">
-            The reusable shell (header, navigation, footer), design tokens,
-            and UI primitives are in place. Page content arrives with M3.
-          </p>
-          <div className="shell-preview__actions">
-            <Button href={startProjectCta.href}>
-              {startProjectCta.label}
-            </Button>
-            <Button href="#services" variant="outline">
-              View All Services
-            </Button>
-          </div>
-        </Card>
-      </div>
+    <SiteShell active={route === 'services' ? 'Services' : 'Home'}>
+      {route === 'services' ? <ServicesPage /> : <Home />}
     </SiteShell>
   )
 }

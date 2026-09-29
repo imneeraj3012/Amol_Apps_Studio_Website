@@ -1,0 +1,36 @@
+/* M4 follow-up — global banner strip, fixed at the viewport top.
+ * The image scales with its intrinsic 1600:300 ratio: full width, never
+ * cropped or distorted, no horizontal overflow at any viewport. */
+
+.app-creation-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  background: var(--color-surface);
+  line-height: 0;
+}
+
+.app-creation-banner__img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* In-flow spacer reserving exactly the fixed banner's rendered height.
+ * Same width basis and same 1600:300 ratio as the image, so it tracks the
+ * banner height pixel-exactly at every viewport — no hard-coded margins. */
+.app-creation-banner__spacer {
+  width: 100%;
+  aspect-ratio: 1600 / 300;
+}
+
+/* Anchored sections must clear the fixed banner plus the sticky header
+ * (100vw overestimates the image width by a hair when a classic scrollbar
+ * is present; the difference only adds harmless extra offset here). */
+.site-shell section[id] {
+  scroll-margin-top: calc(
+    (100vw * 300 / 1600) + var(--header-height) + var(--space-4)
+  );
+}
