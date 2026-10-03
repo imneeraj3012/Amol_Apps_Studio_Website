@@ -16,6 +16,12 @@ export const featuredProjects: ProjectItem[] = [
     alt: 'FileCraft Windows application',
     width: 1920,
     height: 1020,
+    highlights: [
+      'Windows desktop application',
+      'File content comparison',
+      'Content transfer and transformation',
+      'Structured step-by-step workflow',
+    ],
   },
   {
     name: 'AgroSupply',
@@ -27,6 +33,11 @@ export const featuredProjects: ProjectItem[] = [
     alt: 'AgroSupply ordering application',
     width: 1920,
     height: 1080,
+    highlights: [
+      'Digital ordering platform',
+      'Connects manufacturers and distributors',
+      'Streamlined ordering workflow',
+    ],
   },
   {
     name: 'MyNotebook',
@@ -38,6 +49,11 @@ export const featuredProjects: ProjectItem[] = [
     alt: 'MyNotebook notebook application',
     width: 1920,
     height: 1019,
+    highlights: [
+      'Local-first notebook application',
+      'Organized note-taking',
+      'Available across supported platforms',
+    ],
   },
   {
     name: 'Custom Calculator Studio',
@@ -49,6 +65,11 @@ export const featuredProjects: ProjectItem[] = [
     alt: 'Custom Calculator Studio application',
     width: 517,
     height: 1028,
+    highlights: [
+      'Customizable calculator application',
+      'Multiple built-in calculators',
+      'Support for custom calculators',
+    ],
   },
 ]
 

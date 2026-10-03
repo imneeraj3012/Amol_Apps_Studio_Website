@@ -13,12 +13,12 @@ export const siteMeta: SiteMeta = {
 export const primaryNav: NavItem[] = [
   { label: 'Home', href: '#/' },
   { label: 'Services', href: '#/services' },
-  { label: 'Portfolio', href: '#/#portfolio' },
-  { label: 'About', href: '#/#about' },
-  { label: 'Contact', href: '#/#contact' },
+  { label: 'Portfolio', href: '#/portfolio' },
+  { label: 'About', href: '#/about' },
+  { label: 'Contact', href: '#/contact' },
 ]
 
 export const startProjectCta = {
   label: 'Start a Project',
-  href: '#contact',
+  href: '#/contact',
 }

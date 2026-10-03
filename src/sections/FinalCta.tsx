@@ -7,7 +7,15 @@ import './FinalCta.css'
  * container, white typography, Start a Project + Get in Touch actions.
  * Contact target reuses the known business email (mailto). */
 
-export function FinalCta() {
+interface FinalCtaProps {
+  /** Get-in-Touch target. Defaults to the business email; the homepage
+   * passes the experimental query-form route instead. */
+  contactHref?: string
+}
+
+export function FinalCta({
+  contactHref = `mailto:${siteMeta.email}`,
+}: FinalCtaProps) {
   return (
     <section id="contact" className="section" aria-labelledby="contact-title">
       <div className="container">
@@ -52,7 +60,7 @@ export function FinalCta() {
             </Button>
             <a
               className="cta-banner__ghost"
-              href={`mailto:${siteMeta.email}`}
+              href={contactHref}
             >
               <svg
                 viewBox="0 0 16 16"

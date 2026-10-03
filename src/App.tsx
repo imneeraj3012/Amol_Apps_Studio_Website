@@ -1,6 +1,10 @@
 import { useCallback, useEffect, useState } from 'react'
 import { SiteShell } from './components/SiteShell'
+import { AboutPage } from './pages/AboutPage'
+import { ContactPage } from './pages/ContactPage'
 import { Home } from './pages/Home'
+import { PortfolioPage } from './pages/PortfolioPage'
+import { QueryFormTestPage } from './pages/QueryFormTestPage'
 import { ServicesPage } from './pages/ServicesPage'
 import {
   anchorExists,
@@ -56,12 +60,45 @@ function App() {
     document.title =
       route === 'services'
         ? 'Services — Amol Apps Studio'
-        : 'Amol Apps Studio — Turning Business Ideas Into Real Apps'
+        : route === 'portfolio'
+          ? 'Portfolio — Amol Apps Studio'
+          : route === 'about'
+            ? 'About — Amol Apps Studio'
+            : route === 'contact'
+              ? 'Contact — Amol Apps Studio'
+              : route === 'query-form-test'
+                ? 'Query Form Test — Amol Apps Studio'
+                : 'Amol Apps Studio — Turning Business Ideas Into Real Apps'
   }, [route])
 
+  const activeNav =
+    route === 'home'
+      ? 'Home'
+      : route === 'services'
+        ? 'Services'
+        : route === 'portfolio'
+          ? 'Portfolio'
+          : route === 'about'
+            ? 'About'
+            : route === 'contact'
+              ? 'Contact'
+              : ''
+
   return (
-    <SiteShell active={route === 'services' ? 'Services' : 'Home'}>
-      {route === 'services' ? <ServicesPage /> : <Home />}
+    <SiteShell active={activeNav}>
+      {route === 'services' ? (
+        <ServicesPage />
+      ) : route === 'portfolio' ? (
+        <PortfolioPage />
+      ) : route === 'about' ? (
+        <AboutPage />
+      ) : route === 'contact' ? (
+        <ContactPage />
+      ) : route === 'query-form-test' ? (
+        <QueryFormTestPage />
+      ) : (
+        <Home />
+      )}
     </SiteShell>
   )
 }

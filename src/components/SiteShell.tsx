@@ -27,10 +27,8 @@ export function SiteShell({ children, active = 'Home' }: SiteShellProps) {
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
-      <div className="site-chrome">
-        <AppCreationBanner />
-        <Header active={active} />
-      </div>
+      <AppCreationBanner />
+      <Header active={active} />
       <main id="main-content" className="site-shell__main">
         {children}
       </main>

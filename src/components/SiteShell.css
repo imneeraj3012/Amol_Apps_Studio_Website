@@ -12,12 +12,3 @@
   display: flex;
   flex-direction: column;
 }
-
-/* Sticky chrome: the banner-height spacer plus the Header stick together
- * directly below the fixed banner, so navigation stays visible and never
- * covers page content. z-index sits below the fixed banner (60). */
-.site-chrome {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-}

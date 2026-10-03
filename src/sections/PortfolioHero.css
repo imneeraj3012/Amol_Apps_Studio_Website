@@ -1,0 +1,81 @@
+/* Portfolio hero: compact two-column hero in the site visual language. */
+
+.pf-hero {
+  position: relative;
+  overflow: clip;
+  background:
+    radial-gradient(42rem 22rem at 82% -4rem, #dbe8ff 0%, transparent 60%),
+    radial-gradient(36rem 20rem at 60% 8rem, #e6f0ff 0%, transparent 65%),
+    linear-gradient(180deg, #f8fbff 0%, var(--color-bg) 100%);
+  padding-block: var(--space-10) var(--space-12);
+}
+
+.pf-hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-10);
+  align-items: center;
+}
+
+.pf-hero__inner > * {
+  min-width: 0;
+}
+
+.pf-hero__copy .eyebrow {
+  margin: 0 0 var(--space-3);
+}
+
+.pf-hero__title {
+  margin: 0 0 var(--space-4);
+  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.pf-hero__title-line {
+  display: block;
+}
+
+.pf-hero__intro {
+  margin: 0 0 var(--space-6);
+  max-width: 34rem;
+  font-size: var(--text-base);
+}
+
+.pf-hero__ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.pf-hero__visual {
+  min-width: 0;
+}
+
+.pf-hero__frame {
+  border: 6px solid #0e2242;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef3fd, #e0e9fb);
+}
+
+.pf-hero__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 1024px) {
+  .pf-hero {
+    padding-block: var(--space-8) var(--space-12);
+  }
+
+  .pf-hero__inner {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-12);
+  }
+}

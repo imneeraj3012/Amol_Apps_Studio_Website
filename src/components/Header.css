@@ -131,8 +131,8 @@
 .mobile-menu {
   border-top: 1px solid var(--color-border);
   background: var(--color-surface);
-  max-height: calc(100svh - var(--header-height) - (100vw * 300 / 1600));
-  max-height: calc(100dvh - var(--header-height) - (100vw * 300 / 1600));
+  max-height: calc(100svh - var(--header-height));
+  max-height: calc(100dvh - var(--header-height));
   overflow-y: auto;
 }
 

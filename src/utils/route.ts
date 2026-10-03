@@ -12,7 +12,13 @@
  * native browser behavior.
  */
 
-export type RouteName = 'home' | 'services'
+export type RouteName =
+  | 'home'
+  | 'services'
+  | 'portfolio'
+  | 'about'
+  | 'contact'
+  | 'query-form-test'
 
 export interface RouteState {
   route: RouteName
@@ -25,10 +31,15 @@ export function parseHash(hash: string): RouteState {
     const split = rest.indexOf('#')
     const rawRoute = split === -1 ? rest : rest.slice(0, split)
     const anchor = split === -1 ? null : rest.slice(split + 1) || null
-    return {
-      route: rawRoute === 'services' ? 'services' : 'home',
-      anchor,
-    }
+    const route: RouteName =
+      rawRoute === 'services' ||
+      rawRoute === 'portfolio' ||
+      rawRoute === 'about' ||
+      rawRoute === 'contact' ||
+      rawRoute === 'query-form-test'
+        ? rawRoute
+        : 'home'
+    return { route, anchor }
   }
   return {
     route: 'home',

@@ -18,7 +18,7 @@ export function Home() {
       <FeaturedProjects />
       <Process />
       <WhyChoose />
-      <FinalCta />
+      <FinalCta contactHref="#/contact" />
     </>
   )
 }

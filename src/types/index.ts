@@ -49,6 +49,8 @@ export interface ProjectItem {
   /** Intrinsic dimensions (avoids layout shift). */
   width: number
   height: number
+  /** Key points restating the approved description (portfolio detail). */
+  highlights: string[]
 }
 
 export interface ProcessStep {
