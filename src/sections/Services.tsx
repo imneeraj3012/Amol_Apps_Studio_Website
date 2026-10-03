@@ -15,7 +15,7 @@ export function Services() {
       description={servicesIntro}
     >
       <div className="services__head-action">
-        <Button href="#contact" variant="outline" size="sm">
+        <Button href="#/services" variant="outline" size="sm">
           View All Services
           <span aria-hidden="true">→</span>
         </Button>
@@ -38,7 +38,7 @@ export function Services() {
             <p className="service-card__desc">{service.description}</p>
             <a
               className="service-card__go"
-              href="#contact"
+              href="#/contact"
               aria-label={`${service.title} — enquire about this service`}
             >
               <span aria-hidden="true">→</span>

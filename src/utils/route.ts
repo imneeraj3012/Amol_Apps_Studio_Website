@@ -18,7 +18,6 @@ export type RouteName =
   | 'portfolio'
   | 'about'
   | 'contact'
-  | 'query-form-test'
 
 export interface RouteState {
   route: RouteName
@@ -35,8 +34,7 @@ export function parseHash(hash: string): RouteState {
       rawRoute === 'services' ||
       rawRoute === 'portfolio' ||
       rawRoute === 'about' ||
-      rawRoute === 'contact' ||
-      rawRoute === 'query-form-test'
+      rawRoute === 'contact'
         ? rawRoute
         : 'home'
     return { route, anchor }

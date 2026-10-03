@@ -28,6 +28,8 @@ export const serviceDetails: ServiceDetail[] = [
     visual: {
       kind: 'image',
       image: 'images/FileCraft.png',
+      imageWebp: 'images/FileCraft.webp',
+      imageWebpSmall: 'images/FileCraft-960.webp',
       alt: 'FileCraft Windows application — an example of custom software development',
       width: 1920,
       height: 1020,
@@ -49,6 +51,8 @@ export const serviceDetails: ServiceDetail[] = [
     visual: {
       kind: 'image',
       image: 'images/Agrosupply -Desktop.png',
+      imageWebp: 'images/Agrosupply -Desktop.webp',
+      imageWebpSmall: 'images/Agrosupply -Desktop-960.webp',
       alt: 'AgroSupply web application — an example of browser-based business software',
       width: 1920,
       height: 1080,
@@ -69,6 +73,7 @@ export const serviceDetails: ServiceDetail[] = [
     visual: {
       kind: 'image',
       image: 'images/Calculator_Home.png',
+      imageWebp: 'images/Calculator_Home.webp',
       alt: 'Custom Calculator Studio mobile application — an example of mobile development',
       width: 517,
       height: 1028,
@@ -89,6 +94,8 @@ export const serviceDetails: ServiceDetail[] = [
     visual: {
       kind: 'image',
       image: 'images/FileCraft.png',
+      imageWebp: 'images/FileCraft.webp',
+      imageWebpSmall: 'images/FileCraft-960.webp',
       alt: 'FileCraft Windows application — an example of Windows desktop development',
       width: 1920,
       height: 1020,

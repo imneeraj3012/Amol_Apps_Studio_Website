@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import { primaryNav, siteMeta, startProjectCta } from '../data/site'
 import { Button } from './Button'
 import { Logo } from './Logo'
@@ -17,16 +17,37 @@ interface HeaderProps {
 export function Header({ active = 'Home' }: HeaderProps) {
   const [open, setOpen] = useState(false)
   const menuId = useId()
+  const toggleRef = useRef<HTMLButtonElement>(null)
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null)
 
-  // Close the mobile menu on Escape; keep focus on the toggle.
+  // Close the mobile menu on Escape and return focus to the toggle.
   useEffect(() => {
     if (!open) return
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') {
+        setOpen(false)
+        toggleRef.current?.focus()
+      }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
   }, [open ])
+
+  /* M6.6 — focus into the opened menu (first link). Runs post-commit, so
+   * the links already exist in the DOM (same commit removes `hidden`);
+   * no timeout is needed. Touch users are unaffected (focusing a link
+   * opens no keyboard and shows no ring without keyboard input). */
+  useEffect(() => {
+    if (open) firstMobileLinkRef.current?.focus()
+  }, [open ])
+
+  /* M6.6 — activating a menu link navigates away while the menu (and the
+   * focused link) unmounts; return focus to the stable toggle instead of
+   * leaving it on detached content. */
+  const closeMenuAndRefocusToggle = () => {
+    setOpen(false)
+    toggleRef.current?.focus()
+  }
 
   return (
     <header className="site-header">
@@ -82,6 +103,7 @@ export function Header({ active = 'Home' }: HeaderProps) {
 
         <button
           type="button"
+          ref={toggleRef}
           className="site-header__toggle"
           aria-expanded={open}
           aria-controls={menuId}
@@ -101,9 +123,10 @@ export function Header({ active = 'Home' }: HeaderProps) {
       >
         <nav aria-label="Mobile">
           <ul>
-            {primaryNav.map((item) => (
+            {primaryNav.map((item, index) => (
               <li key={item.label}>
                 <a
+                  ref={index === 0 ? firstMobileLinkRef : undefined}
                   href={item.href}
                   className={
                     item.label === active
@@ -111,7 +134,7 @@ export function Header({ active = 'Home' }: HeaderProps) {
                       : 'mobile-menu__link'
                   }
                   aria-current={item.label === active ? 'page' : undefined}
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenuAndRefocusToggle}
                 >
                   {item.label}
                 </a>
@@ -120,7 +143,7 @@ export function Header({ active = 'Home' }: HeaderProps) {
           </ul>
           <Button
             href={startProjectCta.href}
-            onClick={() => setOpen(false)}
+            onClick={closeMenuAndRefocusToggle}
           >
             {startProjectCta.label}
           </Button>

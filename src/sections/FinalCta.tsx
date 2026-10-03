@@ -8,8 +8,8 @@ import './FinalCta.css'
  * Contact target reuses the known business email (mailto). */
 
 interface FinalCtaProps {
-  /** Get-in-Touch target. Defaults to the business email; the homepage
-   * passes the experimental query-form route instead. */
+  /** Get-in-Touch target. Defaults to the business email; callers pass the
+   * Contact page route (`#/contact`) for production CTAs. */
   contactHref?: string
 }
 

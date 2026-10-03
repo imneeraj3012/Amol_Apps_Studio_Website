@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- M6.4 - production sitemap. The app uses hash routing (#/, #/services,
+     #/portfolio, #/about, #/contact); hash fragments are not independent
+     crawlable URLs, so the sitemap lists only the single canonical
+     production URL and does not pretend otherwise. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://imneeraj2610.github.io/AmolApps_Studio_Website/</loc>
+  </url>
+</urlset>

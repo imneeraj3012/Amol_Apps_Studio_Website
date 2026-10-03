@@ -112,53 +112,80 @@ export function Hero() {
             <div className="device device--filecraft">
               <DeviceBar label="FileCraft" />
               <div className="device__slot device__slot--wide">
-                <img
-                  className="device__img"
-                  src={withBase('images/FileCraft.png')}
-                  alt="FileCraft Windows application"
-                  width={1920}
-                  height={1020}
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={`${withBase('images/FileCraft-960.webp')} 960w, ${withBase('images/FileCraft.webp')} 1920w`}
+                    sizes="(max-width: 1023px) 92vw, 640px"
+                  />
+                  <img
+                    className="device__img"
+                    src={withBase('images/FileCraft.png')}
+                    alt="FileCraft Windows application"
+                    width={1920}
+                    height={1020}
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
             <div className="device device--agrosupply">
               <DeviceBar label="AgroSupply" />
               <div className="device__slot device__slot--wide">
-                <img
-                  className="device__img"
-                  src={withBase('images/Agrosupply -Desktop.png')}
-                  alt="AgroSupply ordering application"
-                  width={1920}
-                  height={1080}
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={`${withBase('images/Agrosupply -Desktop-960.webp')} 960w, ${withBase('images/Agrosupply -Desktop.webp')} 1920w`}
+                    sizes="(max-width: 1023px) 60vw, 420px"
+                  />
+                  <img
+                    className="device__img"
+                    src={withBase('images/Agrosupply -Desktop.png')}
+                    alt="AgroSupply ordering application"
+                    width={1920}
+                    height={1080}
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
             <div className="device device--mynotebook">
               <DeviceBar label="MyNotebook" />
               <div className="device__slot">
-                <img
-                  className="device__img"
-                  src={withBase('images/MyNotebook.png')}
-                  alt="MyNotebook notebook application"
-                  width={1920}
-                  height={1019}
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={`${withBase('images/MyNotebook-960.webp')} 960w, ${withBase('images/MyNotebook.webp')} 1920w`}
+                    sizes="(max-width: 1023px) 30vw, 220px"
+                  />
+                  <img
+                    className="device__img"
+                    src={withBase('images/MyNotebook.png')}
+                    alt="MyNotebook notebook application"
+                    width={1920}
+                    height={1019}
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
             <div className="device device--calculator">
               <DeviceBar label="Calculator" />
               <div className="device__slot device__slot--phone">
-                <img
-                  className="device__img"
-                  src={withBase('images/Calculator_Home.png')}
-                  alt="Custom Calculator Studio application"
-                  width={517}
-                  height={1028}
-                  decoding="async"
-                />
+                <picture>
+                  <source
+                    type="image/webp"
+                    srcSet={withBase('images/Calculator_Home.webp')}
+                  />
+                  <img
+                    className="device__img"
+                    src={withBase('images/Calculator_Home.png')}
+                    alt="Custom Calculator Studio application"
+                    width={517}
+                    height={1028}
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
           </div>

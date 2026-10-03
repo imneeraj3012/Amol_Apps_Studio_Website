@@ -4,7 +4,6 @@ import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
 import { Home } from './pages/Home'
 import { PortfolioPage } from './pages/PortfolioPage'
-import { QueryFormTestPage } from './pages/QueryFormTestPage'
 import { ServicesPage } from './pages/ServicesPage'
 import {
   anchorExists,
@@ -66,9 +65,7 @@ function App() {
             ? 'About — Amol Apps Studio'
             : route === 'contact'
               ? 'Contact — Amol Apps Studio'
-              : route === 'query-form-test'
-                ? 'Query Form Test — Amol Apps Studio'
-                : 'Amol Apps Studio — Turning Business Ideas Into Real Apps'
+              : 'Amol Apps Studio — Turning Business Ideas Into Real Apps'
   }, [route])
 
   const activeNav =
@@ -94,8 +91,6 @@ function App() {
         <AboutPage />
       ) : route === 'contact' ? (
         <ContactPage />
-      ) : route === 'query-form-test' ? (
-        <QueryFormTestPage />
       ) : (
         <Home />
       )}

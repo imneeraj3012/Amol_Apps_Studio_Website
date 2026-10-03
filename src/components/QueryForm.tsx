@@ -13,8 +13,20 @@ import './QueryForm.css'
 /* User Query Form. Custom inline validation styled with design tokens
  * (novalidate; no browser-default bubbles). Reports valid data upward.
  * Production Contact page sets sendViaEmailJs so valid data is delivered
- * through EmailJS before the success callback fires; the test route omits
- * it and keeps the existing dry-run behavior. */
+ * through EmailJS before the success callback fires; other callers keep
+ * the existing dry-run behavior.
+ *
+ * M6.5 — lightweight client-side abuse protection (dependency-free: no
+ * CAPTCHA, no backend, no storage, no tracking):
+ * - Honeypot: an off-screen, unfocusable, non-required extra field that
+ *   normal users never see or touch. Kept out of QueryFormData so it never
+ *   affects validation, the EmailJS template mapping, or the confirmation
+ *   summary.
+ * - Timing: submissions completed unrealistically fast after mount are
+ *   treated the same way (conservative threshold; genuine users are never
+ *   asked to wait).
+ * Both cases resolve through the normal onValidSubmit success flow without
+ * calling EmailJS, revealing nothing about the mechanism. */
 
 interface QueryFormProps {
   onValidSubmit: (data: QueryFormData) => void
@@ -28,6 +40,10 @@ interface QueryFormProps {
 type Errors = Partial<Record<keyof QueryFormData, string>>
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+
+/* M6.5 — submissions faster than this after mount are bot-speed. Genuine
+ * users always take longer (name + email + select + 10-char message). */
+const MIN_INTERACTION_MS = 3000
 
 function validate(data: QueryFormData): Errors {
   const errors: Errors = {}
@@ -69,6 +85,10 @@ export function QueryForm({
   const [sending, setSending] = useState(false)
   const [submitError, setSubmitError] = useState<string | null>(null)
   const formRef = useRef<HTMLFormElement>(null)
+  /* M6.5 — uncontrolled honeypot input (never in form state) + mount
+   * timestamp. In-memory only: no cookies, no storage, no tracking. */
+  const honeypotRef = useRef<HTMLInputElement>(null)
+  const [mountedAt] = useState(() => Date.now())
 
   const set = (field: keyof QueryFormData, value: string) => {
     const next = { ...data, [field]: value }
@@ -88,6 +108,18 @@ export function QueryForm({
         '.query-form [aria-invalid="true"]',
       )
       if (firstInvalid instanceof HTMLElement) firstInvalid.focus()
+      return
+    }
+    /* M6.5 — silent spam guard (after validation, before any delivery).
+     * Filled honeypot or bot-speed submission: resolve as a normal success
+     * WITHOUT calling EmailJS. No error is shown, so the mechanism is not
+     * revealed to automated clients. */
+    const honeypotFilled =
+      (honeypotRef.current?.value ?? '').trim().length > 0
+    const submittedTooFast =
+      Date.now() - mountedAt < MIN_INTERACTION_MS
+    if (honeypotFilled || submittedTooFast) {
+      onValidSubmit(data)
       return
     }
     if (!sendViaEmailJs) {
@@ -124,6 +156,22 @@ export function QueryForm({
       noValidate
       onSubmit={handleSubmit}
     >
+      {/* M6.5 — honeypot: a real, submittable field hidden with an
+        accessibility-safe visually-hidden technique (never display:none).
+        Uncontrolled, non-required, unfocusable (tabIndex -1), removed from
+        the accessibility tree (aria-hidden) and from form state. */}
+      <div className="query-form__honeypot" aria-hidden="true">
+        <label htmlFor="query-website">Website</label>
+        <input
+          id="query-website"
+          ref={honeypotRef}
+          name="website"
+          type="text"
+          defaultValue=""
+          autoComplete="off"
+          tabIndex={-1}
+        />
+      </div>
       <div className="query-form__grid">
         <div className="query-form__field">
           <label htmlFor="query-name">Name *</label>

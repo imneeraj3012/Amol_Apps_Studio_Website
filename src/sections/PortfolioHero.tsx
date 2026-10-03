@@ -34,14 +34,21 @@ export function PortfolioHero() {
         </div>
         <div className="pf-hero__visual">
           <div className="pf-hero__frame">
-            <img
-              className="pf-hero__img"
-              src={withBase('images/FileCraft.png')}
-              alt="FileCraft Windows application"
-              width={1920}
-              height={1020}
-              decoding="async"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${withBase('images/FileCraft-960.webp')} 960w, ${withBase('images/FileCraft.webp')} 1920w`}
+                sizes="(max-width: 1023px) 92vw, 620px"
+              />
+              <img
+                className="pf-hero__img"
+                src={withBase('images/FileCraft.png')}
+                alt="FileCraft Windows application"
+                width={1920}
+                height={1020}
+                decoding="async"
+              />
+            </picture>
           </div>
         </div>
       </div>

@@ -29,7 +29,7 @@ export function FeaturedProjects() {
       band
     >
       <div className="projects__head-action">
-        <Button href="#portfolio" variant="outline" size="sm">
+        <Button href="#/portfolio" variant="outline" size="sm">
           View All Projects
           <span aria-hidden="true">→</span>
         </Button>
@@ -41,15 +41,30 @@ export function FeaturedProjects() {
             className={`project-card tone-${project.tone}`}
           >
             <div className="project-card__media">
-              <img
-                className="project-card__img"
-                src={withBase(project.image)}
-                alt={project.alt}
-                width={project.width}
-                height={project.height}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={
+                    project.imageWebpSmall
+                      ? `${withBase(project.imageWebpSmall)} 960w, ${withBase(project.imageWebp)} ${project.width}w`
+                      : withBase(project.imageWebp)
+                  }
+                  sizes={
+                    project.imageWebpSmall
+                      ? '(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 260px'
+                      : undefined
+                  }
+                />
+                <img
+                  className="project-card__img"
+                  src={withBase(project.image)}
+                  alt={project.alt}
+                  width={project.width}
+                  height={project.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="project-card__body">
               <p className="project-card__name">
@@ -70,7 +85,7 @@ export function FeaturedProjects() {
               <p className="project-card__desc">{project.description}</p>
               <a
                 className="project-card__link"
-                href="#contact"
+                href="#/portfolio"
                 aria-label={`${project.name} — view project (contact to enquire)`}
               >
                 View Project <span aria-hidden="true">→</span>

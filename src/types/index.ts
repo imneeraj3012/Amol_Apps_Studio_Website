@@ -44,6 +44,12 @@ export interface ProjectItem {
   tone: AccentTone
   /** Path relative to public/, e.g. "images/FileCraft.png". */
   image: string
+  /* M6.1 — optimized WebP sibling (PNG stays as fallback), e.g.
+   * "images/FileCraft.webp". */
+  imageWebp: string
+  /* M6.1 — optional narrower WebP variant for small viewports, e.g.
+   * "images/FileCraft-960.webp" (960px wide). */
+  imageWebpSmall?: string
   /** Meaningful alt text for the real screenshot. */
   alt: string
   /** Intrinsic dimensions (avoids layout shift). */
@@ -73,6 +79,10 @@ export type ServiceVisual =
       kind: 'image'
       /** Path relative to public/, e.g. "images/FileCraft.png". */
       image: string
+      /* M6.1 — optimized WebP sibling (PNG stays as fallback). */
+      imageWebp: string
+      /* M6.1 — optional narrower WebP variant for small viewports. */
+      imageWebpSmall?: string
       alt: string
       width: number
       height: number

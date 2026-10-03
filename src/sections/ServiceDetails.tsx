@@ -56,15 +56,30 @@ function DetailVisual({ detail }: { detail: ServiceDetail }) {
   if (detail.visual.kind === 'automation') return <AutomationVisual />
   return (
     <div className="detail-visual detail-visual--photo">
-      <img
-        className="detail-visual__img"
-        src={withBase(detail.visual.image)}
-        alt={detail.visual.alt}
-        width={detail.visual.width}
-        height={detail.visual.height}
-        loading="lazy"
-        decoding="async"
-      />
+      <picture>
+        <source
+          type="image/webp"
+          srcSet={
+            detail.visual.imageWebpSmall
+              ? `${withBase(detail.visual.imageWebpSmall)} 960w, ${withBase(detail.visual.imageWebp)} ${detail.visual.width}w`
+              : withBase(detail.visual.imageWebp)
+          }
+          sizes={
+            detail.visual.imageWebpSmall
+              ? '(max-width: 639px) 92vw, (max-width: 1023px) 44vw, 270px'
+              : undefined
+          }
+        />
+        <img
+          className="detail-visual__img"
+          src={withBase(detail.visual.image)}
+          alt={detail.visual.alt}
+          width={detail.visual.width}
+          height={detail.visual.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </picture>
     </div>
   )
 }

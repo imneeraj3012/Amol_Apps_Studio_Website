@@ -17,7 +17,7 @@ export function ServicesPage() {
       <ServiceDetails />
       <HowWeCanHelp />
       <Technologies />
-      <FinalCta />
+      <FinalCta contactHref="#/contact" />
     </>
   )
 }

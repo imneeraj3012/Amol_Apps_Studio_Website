@@ -60,6 +60,12 @@
   background: linear-gradient(135deg, #eef3fd, #e0e9fb);
 }
 
+/* M6.1 — <picture> (WebP + PNG fallback) must not disturb the frame layout:
+ * the <img> keeps laying out exactly as if the wrapper were absent. */
+.pf-hero__frame > picture {
+  display: contents;
+}
+
 .pf-hero__img {
   width: 100%;
   height: auto;

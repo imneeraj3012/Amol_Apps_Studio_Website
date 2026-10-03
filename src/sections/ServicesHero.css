@@ -173,6 +173,12 @@
   overflow: hidden;
 }
 
+/* M6.1 — <picture> (WebP + PNG fallback) must not disturb the slot layout:
+ * the <img> keeps laying out exactly as if the wrapper were absent. */
+.svc-device__slot > picture {
+  display: contents;
+}
+
 .svc-device__img {
   width: 100%;
   height: 100%;

@@ -37,6 +37,13 @@
   overflow: hidden;
 }
 
+/* M6.1 — <picture> (WebP + PNG fallback) must not disturb the media layout:
+ * the <img> keeps laying out exactly as if the wrapper were absent. */
+.pf-card__media > picture,
+.pf-detail__media > picture {
+  display: contents;
+}
+
 .pf-card__img {
   width: 100%;
   height: 100%;

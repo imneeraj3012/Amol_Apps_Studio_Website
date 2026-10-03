@@ -24,15 +24,30 @@ export function PortfolioProjects() {
             className={`pf-card tone-${project.tone}`}
           >
             <div className="pf-card__media">
-              <img
-                className="pf-card__img"
-                src={withBase(project.image)}
-                alt={project.alt}
-                width={project.width}
-                height={project.height}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={
+                    project.imageWebpSmall
+                      ? `${withBase(project.imageWebpSmall)} 960w, ${withBase(project.imageWebp)} ${project.width}w`
+                      : withBase(project.imageWebp)
+                  }
+                  sizes={
+                    project.imageWebpSmall
+                      ? '(max-width: 639px) 92vw, (max-width: 1023px) 46vw, 260px'
+                      : undefined
+                  }
+                />
+                <img
+                  className="pf-card__img"
+                  src={withBase(project.image)}
+                  alt={project.alt}
+                  width={project.width}
+                  height={project.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="pf-card__body">
               <h3 className="pf-card__name">{project.name}</h3>
@@ -57,15 +72,30 @@ export function PortfolioProjects() {
             aria-labelledby={`${slugOf(project.name)}-title`}
           >
             <div className="pf-detail__media">
-              <img
-                className="pf-detail__img"
-                src={withBase(project.image)}
-                alt={project.alt}
-                width={project.width}
-                height={project.height}
-                loading="lazy"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  type="image/webp"
+                  srcSet={
+                    project.imageWebpSmall
+                      ? `${withBase(project.imageWebpSmall)} 960w, ${withBase(project.imageWebp)} ${project.width}w`
+                      : withBase(project.imageWebp)
+                  }
+                  sizes={
+                    project.imageWebpSmall
+                      ? '(max-width: 639px) 92vw, 540px'
+                      : undefined
+                  }
+                />
+                <img
+                  className="pf-detail__img"
+                  src={withBase(project.image)}
+                  alt={project.alt}
+                  width={project.width}
+                  height={project.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
             </div>
             <div className="pf-detail__body">
               <h3
