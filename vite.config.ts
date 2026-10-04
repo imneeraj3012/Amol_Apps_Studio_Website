@@ -18,7 +18,7 @@ import { defineConfig } from 'vite'
 // Asset URLs inside src/ should use relative imports or import.meta.env.BASE_URL
 // (see src/utils/paths.ts) so they keep working under the subpath.
 // ---------------------------------------------------------------------------
-const DEFAULT_GITHUB_PAGES_BASE = '/AmolApps_Studio_Website/'
+const DEFAULT_GITHUB_PAGES_BASE = '/Amol_Apps_Studio_Website/'
 
 const siteBase =
   process.env.VITE_BASE_PATH ?? DEFAULT_GITHUB_PAGES_BASE

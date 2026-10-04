@@ -1,7 +1,7 @@
 # M7 — GitHub Pages deployment (Vite + React).
 #
 # Project site served from a repository subpath:
-#   https://imneeraj2610.github.io/AmolApps_Studio_Website/
+#   https://imneeraj3012.github.io/Amol_Apps_Studio_Website/
 # The Vite `base` (/AmolApps_Studio_Website/) is already configured in
 # vite.config.ts and is preserved — this workflow just builds and deploys it.
 # Hash-based routing needs no 404.html fallback on Pages.
