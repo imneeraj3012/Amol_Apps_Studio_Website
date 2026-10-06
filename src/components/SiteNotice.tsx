@@ -9,12 +9,14 @@ export function SiteNotice() {
     <section className="site-notice" aria-labelledby="site-notice-title">
       <div className="container site-notice__inner">
         <p className="site-notice__title" id="site-notice-title">
-          <span aria-hidden="true">✨</span> We&apos;re improving our website
+          <span aria-hidden="true">✨</span> We’re currently improving our website
         </p>
         <p className="site-notice__text">
-          Our website is currently being refined as we add more details,
-          projects, and resources. The site is fully functional, and
-          we&apos;re continuing to improve your experience.
+          Some sections and content are being updated as we add more details,
+          projects, and resources. During this period, you may experience
+          temporary issues, and some features or functionality may not work
+          as expected. We appreciate your patience while we continue
+          improving your experience.
         </p>
       </div>
     </section>
